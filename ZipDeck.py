@@ -45,7 +45,14 @@ def game(player_functions, rounds=0):
     for player in range(len(bots)):
         print("Player {}: {} points".format(player, scores[player]))
 
+    return scores
+
 players = [Rando, Rando, Serpentine, Serpentine]
 
-game(players, 4)
+outcome = game(players, 4)
+
+print(outcome)
+
+low_score = outcome[min(outcome, key=lambda x: outcome[x])]
+print([player for player in outcome if outcome[player] == low_score])
     

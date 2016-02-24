@@ -10,13 +10,14 @@ The winner is the player with the fewest total points after a set number of roun
 
 ## What You Do:
 
-Write a bot!  A bot is a descendant of the Player class.
+Write a bot!  A bot is a descendant of the Player class.  Your bot should have a function play that takes two parameters, card (the card your dealt) and info (a dictionary with information about the state of the game).  If your bot thinks it has the highest card, it should return an array containing the string "Zip Deck!" and a dictionary showing how it would assign points if it's correct.  If you don't assign enough points, your bot will take the remainder; if you assign too many, instead all of the points will be given to your bot that round.
+
+Every Player also has two attributes that you can access, my_num (that player's number) and player_count (the total number of players).
 
 ```python
-class Player(object):
+class YourBotHere(Player):
     def __init__(self, my_num, player_count):
-        self.my_num = my_num
-        self.player_count = player_count
+        super(YourBotHere, self).__init__(my_num, player_count)
     def play(self, card, info):
         # Info is a hash containing the round number and every player's score
         # Ex: info = {"round": 2, "scores": {0: 2, 1: 0, 2: 2, 3: 6, 4: 5} }
@@ -34,7 +35,14 @@ class Player(object):
         return [""]
 ```
 
-Example class that plays completely randomly:
+```python
+class Player(object):
+    def __init__(self, my_num, player_count):
+        self.my_num = my_num
+        self.player_count = player_count
+```
+
+Example bots:
 
 ```python
 class Rando(Player):
