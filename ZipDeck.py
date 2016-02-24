@@ -8,15 +8,13 @@ def game(player_functions, rounds=0):
     scores = {}
 
     for bot in player_functions:
-        bots.append(bot(player_count))
+        bots.append(bot(player_count, len(player_functions)))
         scores[player_count] = 0
         player_count += 1
 
-    #player_count += 1
-
     deck = [i for i in range(player_count * 4)]
 
-    info = {"player_count": player_count}
+    info = {}
     
     for round_count in range(rounds):
         random.shuffle(deck)
@@ -25,7 +23,7 @@ def game(player_functions, rounds=0):
         
         plays = []
         for bot in bots:
-            plays.append(bot.play(deck[bot.player_num], info))
+            plays.append(bot.play(deck[bot.my_num], info))
         winner = deck.index(max(deck[:player_count]))
 
         if plays[winner][0] == "Zip Deck!":
@@ -35,8 +33,6 @@ def game(player_functions, rounds=0):
             scores[winner] += min(deck[winner]//4,1)
 
         for loser in {i for i in range(player_count)} - {winner}:
-            #print(loser)
-            #print(plays[loser])
             if plays[loser][0] == "Zip Deck!":
                 scores[loser] += min(deck[loser]//4,1)
 
@@ -49,7 +45,7 @@ def game(player_functions, rounds=0):
     for player in range(len(bots)):
         print("Player {}: {} points".format(player, scores[player]))
 
-players = [Rando, Rando, Rando, Rando]
+players = [Rando, Rando, Serpentine, Serpentine]
 
 game(players, 4)
     
