@@ -35,6 +35,8 @@ class Player(object):
         return [""]
 ```
 
+Example class that plays completely randomly:
+
 ```python
 class Rando(Player):
     def play(self, card, info):
