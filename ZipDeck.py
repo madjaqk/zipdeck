@@ -27,14 +27,20 @@ def game(player_functions, rounds=0):
         winner = deck.index(max(deck[:player_count]))
 
         if plays[winner][0] == "Zip Deck!":
-            for target in plays[winner][1]:
-                scores[target] += plays[winner][1][target]
+            points_to_assign = deck[winner]//4
+            targets = plays[winner][1]
+            if sum(targets.values()) > points_to_assign:
+                scores[winner] += points_to_assign
+            else:
+                scores[winner] += max(points_to_assign - sum(targets.values()),0)
+                for target in plays[winner][1]:
+                    scores[target] += plays[winner][1][target]
         else:
-            scores[winner] += min(deck[winner]//4,1)
+            scores[winner] += max(deck[winner]//4,1)
 
         for loser in {i for i in range(player_count)} - {winner}:
             if plays[loser][0] == "Zip Deck!":
-                scores[loser] += min(deck[loser]//4,1)
+                scores[loser] += max(deck[loser]//4,1)
 
         print("Player count: {}".format(player_count))
         print(deck[:player_count])
@@ -49,7 +55,7 @@ def game(player_functions, rounds=0):
 
 players = [Rando, Rando, Serpentine, Serpentine]
 
-outcome = game(players, 4)
+outcome = game(players)
 
 print(outcome)
 
