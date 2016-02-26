@@ -1,6 +1,6 @@
 ## Zip Deck rules:
 
-There are N players, and a deck with N*4 cards.  The deck is shuffled (Python's random.shuffle function) and each player is dealt a card.  Everyone looks at their card, then, on the count of three, if you believe you have the highest card, say (return) "Zip Deck!"
+There are N players, and a deck with N*4 cards.  The deck is shuffled (Python's ```random.shuffle``` function) and each player is dealt a card.  Everyone looks at their card, then, on the count of three, if you believe you have the highest card, say (return) "Zip Deck!"
 
 If you *do* have the highest card and you said "Zip Deck", you win!  You assign floor[C/4] points, divided between the other players any way you'd like, where C is the value of your card.
 
@@ -10,9 +10,9 @@ The winner is the player with the fewest total points after a set number of roun
 
 ## What You Do:
 
-Write a bot!  A bot is a descendant of the Player class.  Your bot should have a function ```play``` that takes two parameters, card (the card your dealt) and info (a dictionary with information about the state of the game).  If your bot thinks it has the highest card, it should return an array containing the string "Zip Deck!" and a dictionary showing how it would assign points if it's correct.  If you don't assign enough points, your bot will take the remainder; if you assign too many, instead all of the points will be given to your bot that round.
+Write a bot!  A bot is a descendant of the ```Player``` class.  Your bot should have a function ```play``` that takes two parameters, card (the card your dealt) and info (a dictionary with information about the state of the game).  If your bot thinks it has the highest card, it should return an array containing the string "Zip Deck!" and a dictionary showing how it would assign points if it's correct.  If you don't assign enough points, your bot will take the remainder; if you assign too many, instead all of the points will be given to your bot that round.
 
-Every Player also has two attributes that you can access, ```my_num``` (that player's number) and ```player_count``` (the total number of players).
+Every ```Player``` also has two attributes that you can access, ```my_num``` (that player's number) and ```player_count``` (the total number of players).  I've imported ```random``` already (naturally); if you want to use any other standard library, just let me know.
 
 ```python
 class YourBotHere(Player):
