@@ -29,12 +29,14 @@ def game(player_functions, rounds=0):
         if plays[winner][0] == "Zip Deck!":
             points_to_assign = deck[winner]//4
             targets = plays[winner][1]
+            for target in targets:
+                if targets[target] < 0: targets[target] = 0
             if sum(targets.values()) > points_to_assign:
                 scores[winner] += points_to_assign
             else:
                 scores[winner] += max(points_to_assign - sum(targets.values()),0)
                 for target in plays[winner][1]:
-                    scores[target] += plays[winner][1][target]
+                    scores[target] += targets[target]
         else:
             scores[winner] += max(deck[winner]//4,1)
 
