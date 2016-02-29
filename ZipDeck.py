@@ -42,9 +42,12 @@ def game(player_functions, rounds=0):
             if plays[loser][0] == "Zip Deck!":
                 scores[loser] += max(deck[loser]//4,1)
 
+        last = {i: [deck[i], plays[i]] for i in range(player_count)}
+
+        info["last"] = last
+
         print("Player count: {}".format(player_count))
-        print(deck[:player_count])
-        print(plays)
+        print(last)
         print(scores)
         print("****************")
             
@@ -55,10 +58,10 @@ def game(player_functions, rounds=0):
 
 players = [Rando, Rando, Serpentine, Serpentine]
 
-outcome = game(players)
+outcome = game(players,4)
 
 print(outcome)
 
 low_score = outcome[min(outcome, key=lambda x: outcome[x])]
-print([player for player in outcome if outcome[player] == low_score])
+print(["{} ({})".format(player, players[player].__name__) for player in outcome if outcome[player] == low_score])
     

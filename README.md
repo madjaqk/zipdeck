@@ -10,18 +10,27 @@ The winner is the player with the fewest total points after a set number of roun
 
 ## What You Do:
 
-Write a bot!  A bot is a descendant of the ```Player``` class.  Your bot should have a function ```play``` that takes two parameters, card (the card your dealt) and info (a dictionary with information about the state of the game).  If your bot thinks it has the highest card, it should return an array containing the string "Zip Deck!" and a dictionary showing how it would assign points if it's correct.  If you don't assign enough points, your bot will take the remainder; if you assign too many, instead all of the points will be given to your bot that round.
+Write a bot!  A bot is a descendant of the `Player` class.  Your bot should have a function `play`v`that takes two parameters, `card` (the card your dealt) and `info` (a dictionary with information about the state of the game).  If your bot thinks it has the highest card, it should return an array containing the string "Zip Deck!" and a dictionary showing how it would assign points if it's correct.  If you don't assign enough points, your bot will take the remainder; if you assign too many, instead all of the points will be given to your bot that round.
 
-Every ```Player``` also has two attributes that you can access, ```my_num``` (that player's number) and ```player_count``` (the total number of players).  I've imported ```random``` already (naturally); if you want to use any other standard library, just let me know.
+The `info` dictionary contains the following keys:
+* `'round'`: The current round, starting with zero.  Maybe your bot wants to get more reckless when the game's about to end?
+* `'scores'`: A dictionary containing every player's current score.
+* `'last'`: A dictionary showing what everyone was dealt last round and what the bot returned (so an array with either an empty string or "Zip Deck!" plus their point allocation).  Useful if you're trying to determine the other players' strategy.
+
+An example `info` from one of my test runs:
+```python
+{'scores': {0: 5, 1: 6, 2: 2, 3: 1}, 
+'last': {0: [12, ['']], 1: [10, ['Zip Deck!', {2: 2}]], 2: [15, ['Zip Deck!', {1: 3}]], 3: [3, ['Zip Deck!', {1: 0}]]}, 
+'round': 3}
+```
+
+Every `Player` also has two attributes that you can access, `my_num` (that player's number) and `player_count` (the total number of players).  I've imported `random` already (naturally); if you want to use any other standard library, just let me know.
 
 ```python
 class YourBotHere(Player):
     def __init__(self, my_num, player_count):
         super(YourBotHere, self).__init__(my_num, player_count)
     def play(self, card, info):
-        # Info is a hash containing the round number and every player's score
-        # Ex: info = {"round": 2, "scores": {0: 2, 1: 0, 2: 2, 3: 6, 4: 5} }
-
         # Define your own play function for your class.
 
         # If you think you're highest, return an array where the first element is the
