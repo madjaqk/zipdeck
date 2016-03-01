@@ -1,7 +1,7 @@
 import random
 from ZipDeckBots import *
 
-def game(player_functions, rounds=0):
+def game(player_functions, rounds=0, watch=False):
     if rounds==0: rounds = len(player_functions)**2 
     bots = []
     player_count = 0
@@ -48,22 +48,42 @@ def game(player_functions, rounds=0):
 
         info["last"] = last
 
-        print("Player count: {}".format(player_count))
-        print(last)
-        print(scores)
-        print("****************")
+        if watch:
+            print("Player count: {}".format(player_count))
+            print(last)
+            print(scores)
+            print("****************")
             
     for player in range(len(bots)):
         print("Player {}: {} points".format(player, scores[player]))
 
     return scores
 
-players = [Rando, Rando, Serpentine, Serpentine]
+players = [Rando, Serpentine, OrionBot]
 
-outcome = game(players,4)
+#outcome = game(players, watch=True)
 
-print(outcome)
+wins = {}
 
+for player in players:
+    wins[player.__name__] = [0, 0]
+
+for game_counter in range(10):
+    random.shuffle(players)
+    outcome = game(players)
+    print(players)
+    print(outcome)
+    
+    low_score = outcome[min(outcome, key=lambda x: outcome[x])]
+    for player in outcome:
+        wins[players[player].__name__][1] += outcome[player]
+        if outcome[player] == low_score: wins[players[player].__name__][0] += 1
+            
+    print(["{} ({})".format(player, players[player].__name__) for player in outcome if outcome[player] == low_score])
+
+print(wins)
+
+"""
 low_score = outcome[min(outcome, key=lambda x: outcome[x])]
 print(["{} ({})".format(player, players[player].__name__) for player in outcome if outcome[player] == low_score])
-    
+""" 

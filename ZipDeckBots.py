@@ -56,3 +56,19 @@ class Serpentine(Player):
             return ["Zip Deck!", {target: card//4}]
         else:
             return [""]
+
+class OrionBot(Player):
+    def __init__(self, my_num, player_count):
+        super(OrionBot, self).__init__(my_num, player_count)
+    def play(self, card, info):
+
+        if card > (self.player_count - 1) * 3.5:
+            highest = -1
+            for each in info["scores"]:
+                if info["scores"][each] > highest and each != self.my_num:
+                    target = each
+                    points = card//4
+            return ["Zip Deck!", {target:points}]
+
+        else: 
+            return [""]
