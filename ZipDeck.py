@@ -53,10 +53,12 @@ def game(player_functions, rounds=0, watch=False):
             print(last)
             print(scores)
             print("****************")
-            
+
+    """
     for player in range(len(bots)):
         print("Player {}: {} points".format(player, scores[player]))
-
+    """
+    
     return scores
 
 players = [Rando, Serpentine, OrionBot]
@@ -68,18 +70,18 @@ wins = {}
 for player in players:
     wins[player.__name__] = [0, 0]
 
-for game_counter in range(10):
+for game_counter in range(100):
     random.shuffle(players)
     outcome = game(players)
-    print(players)
-    print(outcome)
+    #print(players)
+    #print(outcome)
     
     low_score = outcome[min(outcome, key=lambda x: outcome[x])]
     for player in outcome:
         wins[players[player].__name__][1] += outcome[player]
         if outcome[player] == low_score: wins[players[player].__name__][0] += 1
             
-    print(["{} ({})".format(player, players[player].__name__) for player in outcome if outcome[player] == low_score])
+    #print(["{} ({})".format(player, players[player].__name__) for player in outcome if outcome[player] == low_score])
 
 print(wins)
 
