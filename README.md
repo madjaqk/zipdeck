@@ -10,7 +10,7 @@ The winner is the player with the fewest total points after a set number of roun
 
 ## What You Do:
 
-Write a bot!  A bot is a descendant of the `Player` class.  Your bot should have a function `play` that takes two parameters, `card` (the card your dealt) and `info` (a dictionary with information about the state of the game).  If your bot thinks it has the highest card, it should return an array containing the string "Zip Deck!" and a dictionary showing how it would assign points if it's correct.  If you don't assign enough points, your bot will take the remainder; if you assign too many, instead all of the points will be given to your bot that round.
+Write a bot!  A bot is a descendant of the `Player` class.  Your bot should have a function `play` that takes two parameters, `card` (the card you're dealt) and `info` (a dictionary with information about the state of the game).  If your bot thinks it has the highest card, it should return an array containing the string "Zip Deck!" and a dictionary showing how it would assign points if it's correct.  If you don't assign enough points, your bot will take the remainder; if you assign too many, instead all of the points will be given to your bot that round.
 
 The `info` dictionary contains the following keys:
 * `'round'`: The current round, starting with zero.  Maybe your bot wants to get more reckless when the game's about to end?
