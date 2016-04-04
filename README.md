@@ -93,3 +93,7 @@ class Serpentine(Player):
         else:
             return [""]
 ```
+
+## General Notes:
+
+This competition will be run in Python 3.  Bots that intentionally attempt to crash the controller will be disallowed.
