@@ -1,6 +1,6 @@
 ## Zip Deck rules:
 
-There are N players, and a deck with N*4 cards numbered 0 to N*4-1.  The deck is shuffled (Python's `random.shuffle` function) and each player is dealt a card.  Everyone looks at their card, then, on the count of three, if you believe you have the highest card, say (return) "Zip Deck!"
+There are N players, and a deck with N\*4 cards numbered 0 to N\*4-1.  The deck is shuffled (Python's `random.shuffle` function) and each player is dealt a card.  Everyone looks at their card, then, on the count of three, if you believe you have the highest card, say (return) "Zip Deck!"
 
 If you *do* have the highest card and you said "Zip Deck", you win!  You assign floor[C/4] points, divided between the other players any way you'd like, where C is the value of your card.
 
