@@ -2,12 +2,17 @@ import random
 from ZipDeckBots import *
 
 def game(player_functions, rounds=0, watch=False):
-    if rounds==0: rounds = len(player_functions)**2 
+    # Default number of rounds is number of players squared
+    if rounds==0: rounds = len(player_functions)**2
+
     bots = []
     player_count = 0
     scores = {}
 
+    # player_functions should be a list of the classes that will be in the game.
     for bot in player_functions:
+        # Each player class takes two parameters, that player's number (used in
+        # scorekeeping and such) and the total number of players
         bots.append(bot(player_count, len(player_functions)))
         scores[player_count] = 0
         player_count += 1
@@ -25,6 +30,9 @@ def game(player_functions, rounds=0, watch=False):
         for bot in bots:
             plays.append(bot.play(deck[bot.my_num], info))
         winner = deck.index(max(deck[:player_count]))
+
+        # NB: Under the hood, cards aren't actually "dealt", in that they aren't
+        # removed from the deck
 
         if plays[winner][0] == "Zip Deck!":
             points_to_assign = deck[winner]//4
